@@ -13,9 +13,21 @@ module "eks-infra" {
 
 module "l4" {
   source = "../modules/l4"
+  count       = local.type == "l4" ? 1 : 0
   
   project           = local.project
   domain_name = local.domain_name
+  type = local.type
+
+  depends_on = [ module.eks-infra ]
+}
+module "l7" {
+  source = "../modules/l7"
+  count       = local.type == "l7" ? 1 : 0
+  
+  project           = local.project
+  domain_name = local.domain_name
+  type = local.type
 
   depends_on = [ module.eks-infra ]
 }

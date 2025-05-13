@@ -25,7 +25,8 @@ locals {
   project           = "lb-example"
   vpc_cidr          = "192.168.0.0/16"
   region            = "us-east-1"
-  domain_name       = "oyad.store"
+  domain_name       = "oyad.store"  # your domain name
+  type = "l4" # change between NLB + ingress nginx (l4) and ALB (l7)
 }
 
 data "aws_availability_zones" "available" {
