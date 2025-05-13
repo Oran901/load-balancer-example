@@ -1,0 +1,14 @@
+example:
+  repo: "nginxdemos"
+  image: "hello"
+  tag: "latest"
+  tagPlain: "plain-text"
+  port: 80 
+  replica: 3
+
+ingress:
+  domain: "oyad.store"
+  # domain: "example.com"
+
+type: "l7"
+

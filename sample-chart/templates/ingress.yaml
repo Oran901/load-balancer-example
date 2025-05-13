@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.example.image }}-ingress
+  {{- if eq .Values.type "l7" }}
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  {{- end }}
+spec:
+  ingressClassName: {{ if eq .Values.type "l7" }}alb{{ else if eq .Values.type "l4" }}nginx{{ end }}
+  rules:
+    - host: www.{{ .Values.ingress.domain }} 
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-{{ .Values.example.image }}-svc  
+                port:
+                  number: {{ .Values.example.port }}  
+    
+    - host: plain.{{ .Values.ingress.domain }} 
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-{{ .Values.example.tag }}-svc  
+                port:
+                  number: {{ .Values.example.port }}  
