@@ -17,14 +17,12 @@ locals {
   # Map AZs to their names
   azs = data.aws_availability_zones.available.names
 
-  # security group inbound rules
-
 
   ########## variables ###############
-  instance_type     = "t3.medium"
+  instance_type     = "t3.medium"   # instance types for you eks node group
   project           = "lb-example"
-  vpc_cidr          = "192.168.0.0/16"
-  region            = "us-east-1"
+  vpc_cidr          = "192.168.0.0/16" 
+  region            = "us-east-1"   # aws region for your cluster
   domain_name       = "oyad.store"  # your domain name
   type = "l4" # change between NLB + ingress nginx (l4) and ALB (l7)
 }
