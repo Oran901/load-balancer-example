@@ -19,6 +19,12 @@ This project demonstrates two primary methods for exposing external traffic to a
 - TLS termination can occur at the NLB or the Ingress Controller
 - NLB is generally more cost-effective than ALB for the same usage pattern
 
+## Architecture Diagram
+
+![EKS Load Balancing Architecture](assets/lb_diagram.png)
+
+> 📌 *This diagram illustrates the two approaches side by side, showing traffic flow from the user through the Load Balancer into the Kubernetes cluster.*
+
 ## Prerequisites
 - AWS CLI configured
 - A domain registered on Route 53
